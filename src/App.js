@@ -20,8 +20,8 @@ class App extends Component {
     
     const newTaskList = this.state.task.map(task => {
       if(task.id === id){
-        task.state = 1;
-      }
+        task.state = 1;         
+      }      
       return task;
     })
     
@@ -40,6 +40,7 @@ class App extends Component {
       id : (newTask.length+1).toString(),
       [e.target.taskTitle.name] : e.target.taskTitle.value,
       [e.target.taskDescription.name] : e.target.taskDescription.value,
+      buttonText : "Realizada",
       state : 0
     })
 

@@ -13,7 +13,7 @@ class TaskList extends Component{
                     id={task.id.toString()}
                     title={task.taskTitle}
                     description={task.taskDescription}
-                    state={task.state}
+                    state={task.state}                    
                     done={onClickDone}
                 />                            
             </div>            
