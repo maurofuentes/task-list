@@ -5,30 +5,34 @@ import { extend } from 'jquery';
 class TaskList extends Component{
  
     render(){
-        const {task, onClickDone}=this.props;
+        const {task, onClickDone, onEditTask}=this.props;
 
         const newTask = task.filter(task => task.state === 0).map(task => 
-            <div key={task.id.toString()}>                                
-                <TaskCard
-                    id={task.id.toString()}
-                    title={task.taskTitle}
-                    description={task.taskDescription}
-                    state={task.state}                    
-                    done={onClickDone}
-                />                            
-            </div>            
+                                        
+            <TaskCard 
+                key={task.id.toString()}
+                id={task.id.toString()}
+                title={task.taskTitle}
+                description={task.taskDescription}
+                state={task.state}                    
+                done={onClickDone}
+                onEditTask={()=>onEditTask(task)}
+            />                            
+                     
         );
         
         const taskDone = task.filter(task => task.state !== 0).map(task => 
-            <div key={task.id.toString()}>                  
-                <TaskCard
-                    key={task.id.toString()}
-                    title={task.taskTitle}
-                    description={task.taskDescription}
-                    state={task.state}
-                    done={this.props.onClickDone}
-                />                              
-            </div>
+                             
+            <TaskCard
+                key={task.id.toString()}
+                id={task.id.toString()}
+                title={task.taskTitle}
+                description={task.taskDescription}
+                state={task.state}
+                done={this.props.onClickDone}
+                onEditTask={()=>onEditTask(task)}
+            />                              
+            
         )
         
         return(

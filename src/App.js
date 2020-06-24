@@ -9,6 +9,11 @@ class App extends Component {
     super(props);
 
     this.state = {
+      formValues : {
+        id: null,
+        taskTitle : "",
+        taskDescription : ""
+      },
       task : []
             
     }
@@ -16,7 +21,7 @@ class App extends Component {
   }
 
 
-  handleClickDone = (id)=> {    
+  handleClickDone = id=> {    
     
     const newTaskList = this.state.task.map(task => {
       if(task.id === id){
@@ -32,24 +37,94 @@ class App extends Component {
      );
   }
 
+  
   handleSubmit = e =>{
     e.preventDefault();
-
+    
     const newTask = this.state.task;
-    newTask.push({
-      id : (newTask.length+1).toString(),
-      [e.target.taskTitle.name] : e.target.taskTitle.value,
-      [e.target.taskDescription.name] : e.target.taskDescription.value,
-      buttonText : "Realizada",
-      state : 0
-    })
+
+    const {id, taskTitle, taskDescription}=this.state.formValues;
+
+    if (id !== null){
+      const editedTask = newTask.map(task =>{
+        if(task.id === id){
+          task.taskTitle=taskTitle;
+          task.taskDescription=taskDescription;
+        }
+        return task;
+      });
+    
+      this.setState(
+        {
+          task:editedTask
+        }
+      );
+
+      this.clearImput();
+      
+    }else{
+      newTask.push({
+        id : (newTask.length+1).toString(),
+        [e.target.taskTitle.name] : e.target.taskTitle.value,
+        [e.target.taskDescription.name] : e.target.taskDescription.value,
+        buttonText : "Realizada",
+        state : 0
+      })
+
+      this.setState(
+        {
+          task : newTask
+        }
+      );
+
+      this.clearImput();
+    } 
+    
+  }
+
+  onChangeForm = e =>{
+    
+    this.setState(
+      {
+        formValues : 
+        {
+          ...this.state.formValues,
+          [e.target.name] : e.target.value,
+          [e.target.name] : e.target.value
+        }
+      }
+    );
+
+    console.log(this.state.formValues);
+  }
+
+  handleEditTask = task => {
+    
+    const editedValues={
+      id : this.state.task.length,
+      taskTitle : task.taskTitle,
+      taskDescription : task.taskDescription,
+      state: 0
+    }
 
     this.setState(
       {
-        task : newTask
+        formValues : editedValues
       }
     );
-   
+    
+  }
+
+  clearImput = ()=>{
+    this.setState(
+      {
+        formValues: {
+          id:null,
+          taskTitle:"",
+          taskDescription:""
+        }
+      }
+    );
   }
 
   render(){
@@ -64,13 +139,20 @@ class App extends Component {
                 name="Título"
                 description="Descripción"
                 onSubmit={this.handleSubmit}
+                onChange={this.onChangeForm}
+                formTitle = {this.state.formValues.taskTitle}
+                formDescription = {this.state.formValues.taskDescription}
               />
             </div>
           </div>  
   
         </header>
         
-        <TaskList task={this.state.task} onClickDone={this.handleClickDone}/>
+        <TaskList
+          task={this.state.task}
+          onClickDone={this.handleClickDone}
+          onEditTask={this.handleEditTask}
+        />
       </div>
     );
   }

@@ -13,7 +13,12 @@ class TaskCard extends Component{
 
                     <div name="title" className="d-flex justify-content-between">
                         <h4>{title}</h4>                   
-                        <button onClick={()=>this.props.done(id)} className="btn btn-sm btn-success">Realizada</button>
+                        <button
+                            onClick={()=>this.props.done(id)} 
+                            className="btn btn-sm btn-success"
+                        >
+                            Realizada
+                        </button>
                     </div>
                     
                 </h5>
@@ -23,7 +28,12 @@ class TaskCard extends Component{
 
                     <div className="d-flex justify-content-end">
 
-                        <button className="btn btn-sm btn-primary">Editar</button>
+                        <button
+                        className="btn btn-sm btn-primary"
+                        onClick = {this.props.onEditTask}                       
+                        >
+                            Editar
+                        </button>
 
                     </div>
 
