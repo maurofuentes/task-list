@@ -42,8 +42,7 @@ class TaskList extends Component{
                         {newTask}
                     </div>
 
-                    <div className="col-md-6">    
-                    <h2>Tareas Terminadas.</h2>                    
+                    <div className="col-md-6">                     
                         {taskDone}                        
                     </div>
 
