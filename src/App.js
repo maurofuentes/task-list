@@ -21,7 +21,7 @@ class App extends Component {
   }
 
 
-  handleClickDone = id=> {    
+  handleClickDone = id => {    
     
     const newTaskList = this.state.task.map(task => {
       if(task.id === id){
@@ -41,7 +41,7 @@ class App extends Component {
   handleSubmit = e =>{
     e.preventDefault();
     
-    const newTask = this.state.task;
+    const newTask = [...this.state.task];
 
     const {id, taskTitle, taskDescription}=this.state.formValues;
 
@@ -101,7 +101,7 @@ class App extends Component {
   handleEditTask = task => {
     
     const editedValues={
-      id : this.state.task.length,
+      id : task.id,
       taskTitle : task.taskTitle,
       taskDescription : task.taskDescription,
       state: 0

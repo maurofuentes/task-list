@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import TaskCard from './TaskCard';
-import { extend } from 'jquery';
 
 class TaskList extends Component{
+    
  
     render(){
         const {task, onClickDone, onEditTask}=this.props;
@@ -38,12 +38,12 @@ class TaskList extends Component{
         return(
             <div className="container">                
                 <div className="row d-flex justify-content-between">
-                    
-                    <div className="col-6">                                              
+                    <div className="col-md-6">
                         {newTask}
                     </div>
 
-                    <div className="col-6">                        
+                    <div className="col-md-6">    
+                    <h2>Tareas Terminadas.</h2>                    
                         {taskDone}                        
                     </div>
 
