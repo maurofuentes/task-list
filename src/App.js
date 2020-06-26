@@ -20,12 +20,22 @@ class App extends Component {
 
   }
 
+  getTasks = async () => {
+    const answer = await fetch("http://localhost:3000/tareas.json");
+    const datos = await answer.json()
+    console.log(datos);
+    this.setState( {task:datos} )
+  }
+
+  componentDidMount() {
+    this.getTasks();
+  }
 
   handleClickDone = id => {    
     
     const newTaskList = this.state.task.map(task => {
       if(task.id === id){
-        task.state = 1;         
+        task.state = "1";         
       }      
       return task;
     })
@@ -68,7 +78,7 @@ class App extends Component {
         [e.target.taskTitle.name] : e.target.taskTitle.value,
         [e.target.taskDescription.name] : e.target.taskDescription.value,
         buttonText : "Realizada",
-        state : 0
+        state : "0"
       })
 
       this.setState(

@@ -7,7 +7,7 @@ class TaskList extends Component{
     render(){
         const {task, onClickDone, onEditTask}=this.props;
 
-        const newTask = task.filter(task => task.state === 0).map(task => 
+        const newTask = task.filter(task => task.state === "0").map(task => 
                                         
             <TaskCard 
                 key={task.id.toString()}
@@ -21,7 +21,7 @@ class TaskList extends Component{
                      
         );
         
-        const taskDone = task.filter(task => task.state !== 0).map(task => 
+        const taskDone = task.filter(task => task.state !== "0").map(task => 
                              
             <TaskCard
                 key={task.id.toString()}
