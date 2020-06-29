@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import { Modal } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 
 class AddTaskCard extends Component{
@@ -9,45 +11,48 @@ class AddTaskCard extends Component{
         const {title, name, description, onSubmit, onChange, formTitle, formDescription}=this.props;
 
         return(
+            <Modal
+                
+            >
+                <div className="card text-dark my-5">
+                    <div className="card-header text-center text-success">
+                        {title}
+                    </div>
+                    <div className="card-body">
+                        
+                        <form  onSubmit={onSubmit}>                        
 
-            <div className="card text-dark my-5">
-                <div className="card-header text-center text-success">
-                    {title}
+                            <label>{name}</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="taskTitle"
+                                name="taskTitle"
+                                placeholder="Indique el título con el que identificará la tarea."
+                                onChange = {onChange}
+                                value = {formTitle}
+                            />
+                        
+                            <label>{description}</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="taskDescription"
+                                name="taskDescription"
+                                placeholder="Indique una breve descripción de la tarea."
+                                onChange = {onChange}
+                                value = {formDescription}
+                            />
+                                
+                            <div className="text-right">
+                                <button type="submit" className="btn btn-sm btn-success">Guardar</button>
+                            </div>
+
+                        </form>
+        
+                    </div>
                 </div>
-                <div className="card-body">
-                    
-                    <form  onSubmit={onSubmit}>                        
-
-                        <label>{name}</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="taskTitle"
-                            name="taskTitle"
-                            placeholder="Indique el título con el que identificará la tarea."
-                            onChange = {onChange}
-                            value = {formTitle}
-                        />
-                    
-                        <label>{description}</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="taskDescription"
-                            name="taskDescription"
-                            placeholder="Indique una breve descripción de la tarea."
-                            onChange = {onChange}
-                            value = {formDescription}
-                        />
-                            
-                        <div className="text-right">
-                            <button type="submit" className="btn btn-sm btn-success">Guardar</button>
-                        </div>
-
-                    </form>
-    
-                </div>
-            </div>
+            </Modal>
 
         );
 

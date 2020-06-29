@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './App.css';
 import AddTaskCard from './components/AddTaskCard';
 import TaskList from './components/TaskList';
+import NavBar from './components/NavBar';
 
 class App extends Component {
 
@@ -139,7 +140,8 @@ class App extends Component {
 
   render(){
     return (
-      <div>  
+      <div>
+        <NavBar/>
         <header className="container d-block">
           
           <div className="row">
