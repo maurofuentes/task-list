@@ -14,7 +14,7 @@ class NavBar extends Component {
                 <Nav
                     activeKey="/home"
                     onSelect={onSubmitNav}
-                //    {className="justify-content-center bg-warning"}                    
+                    className="justify-content-center bg-warning"                   
                 >
 
                     <Nav.Item>
