@@ -22,7 +22,7 @@ class TaskCard extends Component{
                     </div>
                     
                 </h5>
-                <div className="card-body">   
+                <div className="card-body font-italic">   
 
                     <h5 className="card-title">{description}</h5>
 

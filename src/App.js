@@ -16,21 +16,19 @@ class App extends Component {
         taskDescription : ""
       },
       task : [],
-      modalShow: false
-      
+      modalShow: false    
     }
     
   }
   
   componentDidMount() {
-    this.getTasks();
-    // if (localStorage.getItem("tareas") === null) {
-    //   this.getTasks();
+    if (localStorage.getItem("tareas") === null) {
+      this.getTasks();
       
-    // } else {
-    //   let tareas = localStorage.getItem('tareas')
-    //   this.setState({ tareas: JSON.parse(tareas) })
-    // }
+    } else {
+      let tareas = localStorage.getItem('tareas')
+      this.setState({ task: JSON.parse(tareas) })
+    }
   }
 
   
@@ -55,6 +53,7 @@ class App extends Component {
       return task;
     })
     
+    this.setLocalStorage(newTaskList);
     this.setState(
        {
          task : newTaskList
@@ -78,10 +77,12 @@ class App extends Component {
         }
         return task;
       });
-    
+      
+      this.setLocalStorage(editedTask);
       this.setState(
         {
-          task:editedTask
+          task:editedTask,
+          modalShow: false
         }
       );
 
@@ -96,9 +97,11 @@ class App extends Component {
         state : "0"
       })
 
+      this.setLocalStorage(newTask);
       this.setState(
         {
-          task : newTask
+          task : newTask,
+          modalShow: false
         }
       );
 
@@ -134,28 +137,44 @@ class App extends Component {
 
     this.setState(
       {
-        formValues : editedValues
+        formValues : editedValues,
+        modalShow: true
       }
     );
     
   }
 
   clearImput = ()=>{
-    this.setState(
-      {
+    this.setState({
         formValues: {
           id:null,
           taskTitle:"",
           taskDescription:""
         }
-      }
-    );
+    });
+  }
+
+  handleCloseModal = ()=>{
+    this.setState({
+      modalShow: false
+    });
+  }
+
+  handleShowModal = (e)=>{
+      e.preventDefault();
+    
+    this.setState({
+      modalShow: true
+    });
   }
 
   render(){
     return (
       <div>        
-        <NavBar
+        <NavBar         
+          onSubmitNav={this.handleShowModal}          
+        />
+        <AddTaskCard
           title="Agregar Nuevas tareas."
           name="Título"
           description="Descripción"
@@ -165,7 +184,6 @@ class App extends Component {
           formDescription = {this.state.formValues.taskDescription}
           show={this.state.modalShow}
         />
-        
         <TaskList
           task={this.state.task}
           onClickDone={this.handleClickDone}
