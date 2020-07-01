@@ -12,17 +12,26 @@ class NavBar extends Component {
         return(
             <div className="container-fluid">         
                 <Nav
-                    className="justify-content-center bg-warning"
+                    activeKey="/home"
+                    onSelect={onSubmitNav}
+                //    {className="justify-content-center bg-warning"}                    
                 >
-                    <form 
+
+                    <Nav.Item>
+                        <Nav.Link eventKey="link-1">Agregar </Nav.Link>
+                    </Nav.Item>
+
+
+                   {/* { <form 
                         onSubmit={onSubmitNav}
-                    >
-                        <input
+                    >} */}
+                        {/* {<input
                             className="btn btn-sm btn-primary m-2"
-                            type="submit"
-                            value="+ Agregar tarea"                            
-                        />                       
-                    </form>
+                            type="button"
+                            value="+ Agregar tarea"
+                            onClick={onSubmitNav}                         
+                        />       }                 */}
+                    {/* {</form>} */}
                         
                 </Nav>               
             </div>

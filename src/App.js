@@ -161,7 +161,7 @@ class App extends Component {
   }
 
   handleShowModal = (e)=>{
-      e.preventDefault();
+      // e.preventDefault();
     
     this.setState({
       modalShow: true
