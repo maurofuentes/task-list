@@ -15,22 +15,36 @@ class App extends Component {
         taskTitle : "",
         taskDescription : ""
       },
-      task : []
-            
+      task : [],
+      modalShow: false
+      
     }
-
+    
   }
-
-  getTasks = async () => {
-    const answer = await fetch("http://localhost:3000/tareas.json");
-    const datos = await answer.json()
-    console.log(datos);
-    this.setState( {task:datos} )
-  }
-
+  
   componentDidMount() {
     this.getTasks();
+    // if (localStorage.getItem("tareas") === null) {
+    //   this.getTasks();
+      
+    // } else {
+    //   let tareas = localStorage.getItem('tareas')
+    //   this.setState({ tareas: JSON.parse(tareas) })
+    // }
   }
+
+  
+  getTasks = async () => {
+    const reply = await fetch("http://localhost:3000/tareas.json");
+    const datos = await reply.json()
+    console.log("datos",datos);
+    this.setLocalStorage(datos)
+    this.setState( {task:datos} )
+  }
+  
+  setLocalStorage = (datos) => {    
+    localStorage.setItem('tareas', JSON.stringify(datos))
+  } 
 
   handleClickDone = id => {    
     
@@ -140,25 +154,17 @@ class App extends Component {
 
   render(){
     return (
-      <div>
-        <NavBar/>
-        <header className="container d-block">
-          
-          <div className="row">
-            <div className="col-12">
-              <AddTaskCard
-                title="Agregar Nuevas tareas."
-                name="Título"
-                description="Descripción"
-                onSubmit={this.handleSubmit}
-                onChange={this.onChangeForm}
-                formTitle = {this.state.formValues.taskTitle}
-                formDescription = {this.state.formValues.taskDescription}
-              />
-            </div>
-          </div>  
-  
-        </header>
+      <div>        
+        <NavBar
+          title="Agregar Nuevas tareas."
+          name="Título"
+          description="Descripción"
+          onSubmit={this.handleSubmit}
+          onChange={this.onChangeForm}
+          formTitle = {this.state.formValues.taskTitle}
+          formDescription = {this.state.formValues.taskDescription}
+          show={this.state.modalShow}
+        />
         
         <TaskList
           task={this.state.task}

@@ -8,11 +8,11 @@ class AddTaskCard extends Component{
 
     render(){
 
-        const {title, name, description, onSubmit, onChange, formTitle, formDescription}=this.props;
+        const {title, name, description, onSubmit, onChange, formTitle, formDescription, show}=this.props;
 
         return(
             <Modal
-                
+                show={show}
             >
                 <div className="card text-dark my-5">
                     <div className="card-header text-center text-success">

@@ -1,25 +1,44 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Nav} from 'react-bootstrap';
+import { BsFolderPlus  } from 'react-icons/bs';
+import AddTaskCard from './AddTaskCard';
 
-export default function NavBar(){
+class NavBar extends Component {
 
-    return(
-        <div>
-         
-            <Nav className="justify-content-end" activeKey="/home">
-                <Nav.Item>
-                <Nav.Link href="/home">Active</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                <Nav.Link eventKey="link-1">Link</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                <Nav.Link eventKey="link-2">Link</Nav.Link>
-                </Nav.Item>
-               
-                
-            </Nav>
-        </div>
 
-    );
+    render(){
+
+        const {title, name, description, onSubmit, onChange, formTitle, formDescription, show}=this.props;
+
+        return(
+            <div className="container-fluid">         
+                <Nav
+                    className="justify-content-center bg-warning"
+                    activeKey="/home"
+                    onSelect={(selectedKey)=>alert(`clicked ${selectedKey}`)}
+                >
+                    <Nav.Item>
+                        <Nav.Link
+                            className="text-danger font-weight-bold"
+                            href="/home"
+                            eventKey="link-1"
+                        >
+                            Agregar tarea <BsFolderPlus className="text-uppercase" />
+                        </Nav.Link>
+                    </Nav.Item>
+                </Nav>
+                <AddTaskCard
+                    title={title}
+                    name={name}
+                    description={description}
+                    onSubmit={onSubmit}
+                    onChange={onChange}
+                    formTitle = {formTitle}
+                    formDescription = {formDescription}
+                    show={show}
+                />
+            </div>
+        );
+    }
 }
+export default NavBar;

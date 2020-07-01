@@ -12,10 +12,10 @@ class TaskCard extends Component{
                 <h5 className="card-header">                 
 
                     <div name="title" className="d-flex justify-content-between">
-                        <h4>{title}</h4>                   
+                        <h4 className="text-primary font-weight-bold">{title}</h4>                   
                         <button
                             onClick={()=>this.props.done(id)} 
-                            className="btn btn-sm btn-success"
+                            className="btn btn-sm btn-warning"
                         >
                             Realizada
                         </button>
