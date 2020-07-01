@@ -39,10 +39,12 @@ class TaskList extends Component{
             <div className="container">                
                 <div className="row d-flex justify-content-between">
                     <div className="col-md-6">
+                        <h3 className="font-weight-bold font-italic text-center">Tareas pendientes</h3>
                         {newTask}
                     </div>
 
-                    <div className="col-md-6">                     
+                    <div className="col-md-6">
+                    <h3 className="font-weight-bold font-italic text-center">Tareas terminadas</h3>                    
                         {taskDone}                        
                     </div>
 

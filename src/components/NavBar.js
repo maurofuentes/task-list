@@ -18,9 +18,9 @@ class NavBar extends Component {
                         onSubmit={onSubmitNav}
                     >
                         <input
-                            className="btn btn-sm btn-primary"
+                            className="btn btn-sm btn-primary m-2"
                             type="submit"
-                            value="Agregar tarea"                            
+                            value="+ Agregar tarea"                            
                         />                       
                     </form>
                         
